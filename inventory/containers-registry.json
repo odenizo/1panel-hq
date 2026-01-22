@@ -1,0 +1,69 @@
+{
+  "generated_at": "2024-01-22T03:20:00Z",
+  "generated_by": "automation/scripts/collect-1panel-data.py",
+  "description": "Master registry of all deployed containers on 1Panel",
+  "total_containers": 3,
+  "containers": [
+    {
+      "name": "postgres",
+      "status": "running",
+      "image": "postgres:15-alpine",
+      "version": "15.0",
+      "container_id": "abc123def456",
+      "type": "database",
+      "started_at": "2024-01-20T10:30:00Z",
+      "documentation_path": "deployments/containers/postgres/",
+      "health_status": "healthy",
+      "uptime_seconds": 185723,
+      "criticality": "critical",
+      "owner": "Deniz"
+    },
+    {
+      "name": "redis",
+      "status": "running",
+      "image": "redis:7-alpine",
+      "version": "7.0",
+      "container_id": "def456ghi789",
+      "type": "cache",
+      "started_at": "2024-01-20T10:31:00Z",
+      "documentation_path": "deployments/containers/redis/",
+      "health_status": "healthy",
+      "uptime_seconds": 185663,
+      "criticality": "high",
+      "owner": "Deniz"
+    },
+    {
+      "name": "github-actions-runner",
+      "status": "running",
+      "image": "ghcr.io/actions/runner:latest",
+      "version": "2.311",
+      "container_id": "jkl012mno345",
+      "type": "ci_cd",
+      "started_at": "2024-01-20T10:32:00Z",
+      "documentation_path": "deployments/github-actions-runner/",
+      "health_status": "healthy",
+      "uptime_seconds": 185573,
+      "criticality": "high",
+      "owner": "Deniz"
+    }
+  ],
+  "summary": {
+    "total_running": 3,
+    "total_stopped": 0,
+    "total_unhealthy": 0,
+    "total_critical": 1,
+    "total_high": 2,
+    "total_medium": 0,
+    "database_containers": 1,
+    "cache_containers": 1,
+    "ci_cd_containers": 1,
+    "application_containers": 0,
+    "infrastructure_containers": 0
+  },
+  "notes": [
+    "This is a template with example containers. Add your actual containers here.",
+    "Generated automatically by collection scripts or manually updated.",
+    "Update when containers are added/removed/modified.",
+    "Timestamp reflects when this inventory was last collected."
+  ]
+}
