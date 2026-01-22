@@ -1,0 +1,97 @@
+{
+  "description": "GitHub Actions Runner Label Definitions",
+  "purpose": "Define labels for targeting specific runners in GitHub Actions workflows",
+  "labels": {
+    "hetzner": {
+      "description": "Indicates runner is on Hetzner Cloud infrastructure",
+      "use_case": "Target workflows that need cloud resources",
+      "example_workflow": "runs-on: [self-hosted, hetzner]"
+    },
+    "1panel": {
+      "description": "Indicates runner is managed by 1Panel",
+      "use_case": "Target infrastructure-as-code and deployment tasks",
+      "example_workflow": "runs-on: [self-hosted, 1panel]"
+    },
+    "self-hosted": {
+      "description": "Standard GitHub label for self-hosted runners",
+      "use_case": "Required to use any self-hosted runner",
+      "example_workflow": "runs-on: [self-hosted]"
+    },
+    "linux": {
+      "description": "Indicates Linux operating system",
+      "use_case": "Target workflows that require Linux",
+      "example_workflow": "runs-on: [self-hosted, linux]"
+    },
+    "docker": {
+      "description": "Indicates Docker is available for use",
+      "use_case": "Target Docker build and push workflows",
+      "example_workflow": "runs-on: [self-hosted, docker]"
+    }
+  },
+  "example_workflows": {
+    "any_self_hosted": {
+      "description": "Run on any available self-hosted runner",
+      "yaml": "runs-on: [self-hosted]"
+    },
+    "hetzner_only": {
+      "description": "Run only on Hetzner infrastructure",
+      "yaml": "runs-on: [self-hosted, hetzner]"
+    },
+    "hetzner_with_docker": {
+      "description": "Run on Hetzner with Docker capabilities",
+      "yaml": "runs-on: [self-hosted, hetzner, docker]"
+    },
+    "1panel_managed": {
+      "description": "Run on 1Panel-managed infrastructure",
+      "yaml": "runs-on: [self-hosted, 1panel]"
+    },
+    "specific_configuration": {
+      "description": "Target specific runner configuration (Hetzner + 1Panel + Docker)",
+      "yaml": "runs-on: [self-hosted, hetzner, 1panel, docker, linux]"
+    }
+  },
+  "runner_configurations": {
+    "default": {
+      "name": "runner-hetzner-1",
+      "labels": ["hetzner", "1panel", "self-hosted", "linux", "docker"],
+      "ephemeral": false,
+      "cpu_limit": 4,
+      "memory_limit_gb": 8
+    },
+    "lightweight": {
+      "description": "For simple tasks",
+      "labels": ["hetzner", "1panel", "self-hosted", "linux"],
+      "cpu_limit": 2,
+      "memory_limit_gb": 4
+    },
+    "ephemeral_secure": {
+      "description": "For public repos, auto-cleanup after each job",
+      "labels": ["hetzner", "1panel", "self-hosted", "linux", "docker", "ephemeral"],
+      "ephemeral": true,
+      "cpu_limit": 4,
+      "memory_limit_gb": 8
+    }
+  },
+  "workflow_examples": [
+    {
+      "name": "Deploy to 1Panel",
+      "runs_on": "[self-hosted, 1panel]",
+      "description": "Deploy directly to 1Panel-managed infrastructure"
+    },
+    {
+      "name": "Docker Build and Push",
+      "runs_on": "[self-hosted, hetzner, docker]",
+      "description": "Build and push Docker images to registry"
+    },
+    {
+      "name": "Infrastructure Tests",
+      "runs_on": "[self-hosted, hetzner, 1panel]",
+      "description": "Run integration tests against infrastructure"
+    },
+    {
+      "name": "Data Collection",
+      "runs_on": "[self-hosted, 1panel]",
+      "description": "Collect 1Panel data and commit to repo"
+    }
+  ]
+}
